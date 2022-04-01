@@ -15,20 +15,25 @@ int main() {
     container_1[2] = "C";
     
     //Проверка методов
-    container.insert("test", 1);
-    container_1.insertAtBeginning("TEST");
-    container.erase(0);
-    container_1.eraseAtEnd();
+//    container.insert("test", 1);
+//    container_1.insertAtBeginning("TEST");
+    
+//    container.erase(0);
+//    container_1.eraseAtEnd();
+    
 //    container.loop();
+    
 //    cout << container_1.getLength() << "\n";
+    
 //    if (container.isEmpty()) {
 //        cout << "container пуст" << "\n";
 //    } else {
 //        cout << "container не пуст" << "\n";
 //    }
-    container.swap(container_1);
-    container.reverse();
-//    container_1.clear();
+    
+//    container.swap(container_1);
+    
+//    container.reverse();
     
     for (int i = 0; i < container.getLength(); ++i) {
         cout << container[i] << "\n";
