@@ -131,7 +131,7 @@ public:
         return m_data[index];
     }
     
-    T& getValueAtBeginning() {
+    T& getValueAtBeginning() const {
 //        assert (m_length > 0);
         try {
             if (m_length <= 0) {
@@ -146,7 +146,7 @@ public:
         return m_data[0];
     }
     
-    T& getValueAtEnd() {
+    T& getValueAtEnd() const {
 //        assert (m_length > 0);
         try {
             if (m_length <= 0) {
@@ -180,7 +180,7 @@ public:
         }
     }
     
-    int getLength() {
+    int getLength() const {
         return m_length;
     }
     
