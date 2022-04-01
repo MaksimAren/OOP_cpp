@@ -11,7 +11,16 @@ public:
     }
     
     Container(int length): m_length(length) {
-        assert(length >= 0);
+//        assert(length >= 0);
+        try {
+            if (length < 0) {
+                throw 1;
+            }
+        }
+        catch (int e) {
+            std::cout << "Устанавливаемая длина контейнера ( " << length << " ) отрицательная." << "\n";
+            exit(e);
+        }
         
         if (length > 0) {
             m_data = new T[length];
@@ -25,7 +34,16 @@ public:
     }
     
     void insert(T value, int where) {
-        assert(where >= 0 && where <= m_length);
+//        assert(where >= 0 && where <= m_length);
+        try {
+            if ( !(where >= 0 && where <= m_length) ) {
+                throw 2;
+            }
+        }
+        catch (int e) {
+            std::cout << "Указанное место для вставки ( " << where << " ) недопустимо. Используйте значения от 0 до " << m_length << ".\n";
+            exit(e);
+        }
         
         T *data = new T[m_length + 1];
         
@@ -49,7 +67,23 @@ public:
     void insertAtEnd(T value);
     
     void erase(int where) {
-        assert(where >= 0 && where < m_length);
+//        assert(where >= 0 && where < m_length);
+        try {
+            if (m_length <=0) {
+                throw 1;
+            }
+            if ( !(where >= 0 && where < m_length) ) {
+                throw 2;
+            }
+        }
+        catch (int e) {
+            if (e == 1) {
+                std::cout << "Нельзя удалить элемент из пустого контейнера.\n";
+            } else if (e == 2) {
+                std::cout << "Указанное место для удаления ( " << where << " ) недопустимо. Используйте значения от 0 до " << m_length - 1 << ".\n";
+            }
+            exit(e);
+        }
         
         if (m_length == 1) {
             clear();
@@ -76,25 +110,68 @@ public:
     void eraseAtEnd();
     
     T& operator[](int index) {
-        assert(index >= 0 && index < m_length);
+//        assert(index >= 0 && index < m_length);
+        try {
+            if (m_length <=0) {
+                throw 1;
+            }
+            if ( !(index >= 0 && index < m_length) ) {
+                throw 2;
+            }
+        }
+        catch (int e) {
+            if (e == 1) {
+                std::cout << "Нельзя взять элемент из пустого контейнера.\n";
+            } else if (e == 2) {
+                std::cout << "Указанное место для взятия элемента ( " << index << " ) недопустимо. Используйте значения от 0 до " << m_length - 1 << ".\n";
+            }
+            exit(e);
+        }
         
         return m_data[index];
     }
     
     T& getValueAtBeginning() {
-        assert (m_length > 0);
+//        assert (m_length > 0);
+        try {
+            if (m_length <= 0) {
+                throw 5;
+            }
+        }
+        catch (int e) {
+            std::cout << "Для получения начального элемента длина контейнера ( " << m_length << " ) должна быть положительной." << "\n";
+            exit(e);
+        }
         
         return m_data[0];
     }
     
     T& getValueAtEnd() {
-        assert (m_length > 0);
+//        assert (m_length > 0);
+        try {
+            if (m_length <= 0) {
+                throw 5;
+            }
+        }
+        catch (int e) {
+            std::cout << "Для получения конечного элемента длина контейнера ( " << m_length << " ) должна быть положительной." << "\n";
+            exit(e);
+        }
         
         return m_data[m_length - 1];
     }
     
     void loop() {
-        assert (m_length > 0);
+//        assert (m_length > 0);
+        try {
+            if (m_length <= 0) {
+                throw 5;
+            }
+        }
+        catch (int e) {
+            std::cout << "Для получения элемента в цикле длина контейнера ( " << m_length << " ) должна быть положительной." << "\n";
+            exit(e);
+        }
         
         T value;
         for (int i = 0; i < m_length; ++i) {
