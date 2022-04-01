@@ -1,78 +1,43 @@
 #include <iostream>
-#include "ARRAYINT.h"
-#include "Array.h"
 #include "Container.h"
 
 using namespace std;
 
 int main() {
-//    ArrayInt array(10);
-//
-//    for(int i = 0; i < 10; i++)
-//        array[i] = i;
-//
-//    for (int j = 0; j < array.getLength(); j++)
-//        std::cout << array[j] << " ";
-//    std::cout << "\n";
-//
-//    array.insertAtBeginning(50);
-//    for (int j = 0; j < array.getLength(); j++)
-//        std::cout << array[j] << " ";
-//    std::cout << "\n";
-//
-//    array.insertAtEnd(35);
-//    for (int j = 0; j < array.getLength(); j++)
-//        std::cout << array[j] << " ";
-//    std::cout << "\n";
+    Container<string> container(2);
+    Container<string> container_1(3);
     
-//    array.insertBefore(15, 4);
-//
-//    for (int j = 0; j < array.getLength(); j++)
-//        std::cout << array[j] << " ";
-//    std::cout << "\n";
-//
-//    array.remove(5);
-//
-//    for (int j = 0; j < array.getLength(); j++)
-//        std::cout << array[j] << " ";
-//    std::cout << "\n";
+    container[0] = "a";
+    container[1] = "b";
     
-//    Array<int> intArray(4);
-//    Array<double> doubleArray(4);
-//    
-//    for (int count = 0; count < intArray.getLength(); ++count)
-//    {
-//        intArray[count] = count;
-//        doubleArray[count] = count + 0.5;
+    container_1[0] = "A";
+    container_1[1] = "B";
+    container_1[2] = "C";
+    
+    //Проверка методов
+    container.insert("test", 1);
+    container_1.insertAtBeginning("TEST");
+    container.erase(0);
+    container_1.eraseAtEnd();
+//    container.loop();
+//    cout << container_1.getLength() << "\n";
+//    if (container.isEmpty()) {
+//        cout << "container пуст" << "\n";
+//    } else {
+//        cout << "container не пуст" << "\n";
 //    }
-//    
-//    for (int count = intArray.getLength() - 1; count >= 0; --count)
-//        std::cout << intArray[count] << "\t" << doubleArray[count] << '\n';
+    container.swap(container_1);
+    container.reverse();
+//    container_1.clear();
     
-    Container<int> container(1);
-    Container<int> container_1(4);
+    for (int i = 0; i < container.getLength(); ++i) {
+        cout << container[i] << "\n";
+    }
+    cout << "\n";
     
-    container[0] = 0;
-//    container[1] = 1;
-//    container[2] = 2;
-    
-    for(int i = 0; i < container_1.getLength(); ++i)
-        container_1[i] = i;
-    
-//    container.eraseAtBeginning();
-//    container.eraseAtEnd();
-    
-    cout << container.getValueAtEnd() << "\n";
-    
-//    for(int i = 0; i < container.getLength(); ++i)
-//        cout << container[i] << "\n";
-//    cout << "length = " << container.getLength() << "\n";
-    
-//    container.erase();
-//    for(int i = 0; i < container.getLength(); ++i)
-//        cout << container[i] << '\n';
-    cout << "length = " << container.getLength() << '\n';
-    cout << "empty = " << container.isEmpty() << '\n';
+    for (int i = 0; i < container_1.getLength(); ++i) {
+        cout << container_1[i] << "\n";
+    }
     
     return 0;
 }

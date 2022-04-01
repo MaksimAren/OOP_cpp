@@ -4,43 +4,40 @@
 #include <cassert>
 
 template <class T>
-class Container
-{
+class Container {
 public:
-    Container():
-        m_length(0), m_data(nullptr)
-    {
+    Container(): m_length(0), m_data(nullptr) {
+        
     }
     
-    Container(int length):
-        m_length(length)
-    {
+    Container(int length): m_length(length) {
         assert(length >= 0);
         
-        if (length > 0)
+        if (length > 0) {
             m_data = new T[length];
-        else
+        } else {
             m_data = nullptr;
+        }
     }
     
-    ~Container()
-    {
+    ~Container() {
         delete[] m_data;
     }
     
-    void insert(T value, int where)
-    {
+    void insert(T value, int where) {
         assert(where >= 0 && where <= m_length);
         
-        int *data = new int[m_length + 1];
+        T *data = new T[m_length + 1];
         
-        for (int before = 0; before < where; ++before)
+        for (int before = 0; before < where; ++before) {
             data[before] = m_data[before];
+        }
         
         data[where] = value;
         
-        for (int after = where; after < m_length; ++after)
+        for (int after = where; after < m_length; ++after) {
             data[after + 1] = m_data[after];
+        }
         
         delete[] m_data;
         m_data = data;
@@ -51,23 +48,23 @@ public:
     
     void insertAtEnd(T value);
     
-    void erase(int where)
-    {
+    void erase(int where) {
         assert(where >= 0 && where < m_length);
         
-        if (m_length == 1)
-        {
+        if (m_length == 1) {
             clear();
             return;
         }
         
-        int *data = new int[m_length - 1];
+        T *data = new T[m_length - 1];
         
-        for (int before = 0; before < where; ++before)
+        for (int before = 0; before < where; ++before) {
             data[before] = m_data[before];
+        }
         
-        for (int after = where + 1; after < m_length; ++after)
+        for (int after = where + 1; after < m_length; ++after) {
             data[after - 1] = m_data[after];
+        }
         
         delete[] m_data;
         m_data = data;
@@ -78,57 +75,74 @@ public:
     
     void eraseAtEnd();
     
-    T& operator[](int index)
-    {
+    T& operator[](int index) {
         assert(index >= 0 && index < m_length);
         
         return m_data[index];
     }
     
-    T& getValueAtBeginning()
-    {
+    T& getValueAtBeginning() {
         assert (m_length > 0);
         
         return m_data[0];
     }
     
-    T& getValueAtEnd()
-    {
+    T& getValueAtEnd() {
         assert (m_length > 0);
         
         return m_data[m_length - 1];
     }
     
-    int getLength()
-    {
+    void loop() {
+        assert (m_length > 0);
+        
+        T value;
+        for (int i = 0; i < m_length; ++i) {
+            value = m_data[i];
+            std::cout << "Получен элемент с индексом i = " << i << "\n"; // подтверждение получения элемента
+        }
+    }
+    
+    int getLength() {
         return m_length;
     }
     
-    bool isEmpty()
-    {
+    bool isEmpty() {
         return (getLength() == 0);
     }
     
-    void swap(Container<T>& container) //реализовать
-    {
-        std::cout << "swapTEST length = " << container.getLength() << "\n";
+    void swap(Container<T>& container) {
+        int length = container.getLength();
+        T *data = new T[length];
+
+        for (int i = 0; i < length; ++i) {
+            data[i] = container[i];
+        }
+
+        container.clear();
+
+        for (int i = 0; i < m_length; ++i) {
+            container.insertAtEnd(m_data[i]);
+        }
+
+        delete[] m_data;
+        m_data = data;
+        m_length = length;
     }
     
-    void reverse()
-    {
-        if (m_length > 1)
-        {
-            int *data = new int[m_length];
-            for (int i = 0; i < m_length; ++i)
+    void reverse() {
+        if (m_length > 1) {
+            T *data = new T[m_length];
+            for (int i = 0; i < m_length; ++i) {
                 data[i] = m_data[m_length - 1 - i];
+            }
             
             delete[] m_data;
             m_data = data;
         }
     }
     
-    void clear()
-    {
+    void clear() {
         delete[] m_data;
         
         m_data = nullptr;
