@@ -85,6 +85,20 @@ public:
         return m_data[index];
     }
     
+    T& getValueAtBeginning()
+    {
+        assert (m_length > 0);
+        
+        return m_data[0];
+    }
+    
+    T& getValueAtEnd()
+    {
+        assert (m_length > 0);
+        
+        return m_data[m_length - 1];
+    }
+    
     int getLength()
     {
         return m_length;
