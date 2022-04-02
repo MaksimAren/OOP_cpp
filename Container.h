@@ -69,7 +69,7 @@ public:
     void erase(int where) {
 //        assert(where >= 0 && where < m_length);
         try {
-            if (m_length <=0) {
+            if (isEmpty()) {
                 throw 1;
             }
             if ( !(where >= 0 && where < m_length) ) {
@@ -112,7 +112,7 @@ public:
     T& operator[](int index) {
 //        assert(index >= 0 && index < m_length);
         try {
-            if (m_length <=0) {
+            if (isEmpty()) {
                 throw 1;
             }
             if ( !(index >= 0 && index < m_length) ) {
@@ -134,12 +134,12 @@ public:
     T& getValueAtBeginning() const {
 //        assert (m_length > 0);
         try {
-            if (m_length <= 0) {
-                throw 5;
+            if (isEmpty()) {
+                throw 1;
             }
         }
         catch (int e) {
-            std::cout << "Для получения начального элемента длина контейнера ( " << m_length << " ) должна быть положительной." << "\n";
+            std::cout << "Нельзя взять начальный элемент из пустого контейнера.\n";
             exit(e);
         }
         
@@ -149,12 +149,12 @@ public:
     T& getValueAtEnd() const {
 //        assert (m_length > 0);
         try {
-            if (m_length <= 0) {
-                throw 5;
+            if (isEmpty()) {
+                throw 1;
             }
         }
         catch (int e) {
-            std::cout << "Для получения конечного элемента длина контейнера ( " << m_length << " ) должна быть положительной." << "\n";
+            std::cout << "Нельзя взять конечный элемент из пустого контейнера.\n";
             exit(e);
         }
         
@@ -164,12 +164,12 @@ public:
     void loop() {
 //        assert (m_length > 0);
         try {
-            if (m_length <= 0) {
-                throw 5;
+            if (isEmpty()) {
+                throw 1;
             }
         }
         catch (int e) {
-            std::cout << "Для получения элемента в цикле длина контейнера ( " << m_length << " ) должна быть положительной." << "\n";
+            std::cout << "Нельзя взять элемент в цикле из пустого контейнера.\n";
             exit(e);
         }
         
